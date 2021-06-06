@@ -1,0 +1,23 @@
+class Solution {
+	public ArrayList<ArrayList<Integer>> minimumAbsDifference(ArrayList<Integer> arr) {
+		Collections.sort(arr);
+		ArrayList<ArrayList<Integer>> lists = new ArrayList<>();
+		int minDiffernece = Integer.MAX_VALUE;
+        for(int i = 0; i < arr.size()-1; i++){
+            if(arr.get(i+1)-arr.get(i) < minDiffernece) {
+            	lists.clear();
+            	ArrayList<Integer> list = new ArrayList<Integer>();
+            	list.add(arr.get(i));
+            	list.add(arr.get(i+1));
+            	lists.add(list);
+            	minDiffernece = arr.get(i+1)-arr.get(i);
+            }else if(arr.get(i+1)-arr.get(i) == minDiffernece) {
+            	ArrayList<Integer> list = new ArrayList<Integer>();
+            	list.add(arr.get(i));
+            	list.add(arr.get(i+1));
+            	lists.add(list);
+            }
+        }
+        return lists;
+	}
+}
