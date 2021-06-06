@@ -1,0 +1,32 @@
+ListNode reversePartialList(ListNode head, int m, int n) {
+        ListNode previous = null;
+        ListNode currentNode = head;
+        n = n-m;
+        
+        while(m != 1){
+            previous = currentNode;
+            currentNode = currentNode.next;
+            m--;
+        }
+        
+        ListNode firstNode = previous;
+        ListNode nextNode = null;
+        previous = null;
+        
+        while(n != -1) {
+        	 nextNode = currentNode.next;
+        	 currentNode.next = previous;
+        	 previous = currentNode;
+        	 currentNode = nextNode;
+        	 n--;
+        }
+        
+        if(firstNode != null) {
+        	currentNode = firstNode.next;
+        	currentNode.next = nextNode;
+        	firstNode.next = previous;
+        	return head;
+        }else {
+        	return previous;
+        }
+    }
