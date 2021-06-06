@@ -1,0 +1,52 @@
+ListNode detectAndRemoveLoop(ListNode head) {
+	 
+    	ListNode slow = head;
+    	ListNode fast = head.next;
+    	
+    	while(slow != null && fast!=null && fast.next != null) {
+    		
+    		slow = slow.next;
+    		fast = fast.next.next;
+    		
+    		if(slow == fast) {
+    			head = removeLoop(slow, head);
+    			break;
+    		}
+    		
+    	}
+    	
+    	return head;
+    }
+
+
+	private ListNode removeLoop(ListNode slow, ListNode head) {
+		ListNode pt1 = slow;
+		ListNode pt2 = slow;
+		
+		int loopElementCount = 1;
+		
+		while(pt1.next != pt2) {
+			pt1 = pt1.next;
+			loopElementCount++;
+		}
+		
+		pt1 = head;
+		pt2 = head;
+		
+		for(int i=0; i<loopElementCount; i++) {
+			pt2 = pt2.next;
+		}
+		
+		while(pt2 != pt1) {
+			pt1 = pt1.next;
+			pt2 = pt2.next;
+		}
+		
+		while(pt2.next != pt1) {
+			pt2 = pt2.next;
+		}
+		
+		pt2.next = null;
+		
+		return head;
+	}
