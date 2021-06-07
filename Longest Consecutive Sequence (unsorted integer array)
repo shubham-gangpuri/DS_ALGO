@@ -1,0 +1,28 @@
+public int LCS(List<Integer> arr) {
+		
+        int maxCount = 1;
+        int tempCount = 1;
+        
+        Hashtable<Integer, Boolean> table = new Hashtable<>();
+        
+        for(Integer element : arr){
+            table.put(element, false);
+        }
+        
+        for (Map.Entry<Integer,Boolean> entry : table.entrySet()){
+        	if(!entry.getValue()) {
+        		table.put(entry.getKey(), true);
+        		int key = entry.getKey()+ 1;
+        		while(table.containsKey(key)) {
+        			table.put(key, true);
+        			key = key + 1;
+        			tempCount++;
+        		}
+        		if(maxCount < tempCount) {
+        			maxCount = tempCount;
+        		}
+        		tempCount = 1;
+        	}
+        }
+        return maxCount;
+    }	
