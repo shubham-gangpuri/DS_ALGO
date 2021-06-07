@@ -1,0 +1,17 @@
+public ListNode removeDuplicates(ListNode head) {
+	     
+		ListNode previousNode = head;
+		ListNode currentNode = head;
+		
+		while(currentNode.next != null) {
+			currentNode = currentNode.next;
+			
+			if(currentNode.val == previousNode.val) {
+				previousNode.next = currentNode.next;
+			}else {
+				previousNode = currentNode;
+			}
+		}
+		
+		return head;
+}
