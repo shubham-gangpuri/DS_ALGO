@@ -1,0 +1,29 @@
+public int validAnagram(String s1, String s2) {
+		
+		if(s1 == null || s2 == null) {
+			return 0;
+		}
+		
+		if(s1.length() != s2.length()) {
+			return 0;
+		}
+	
+		Map<Character, Integer> map = new HashMap<>();
+		for(int i=0; i<s1.length(); i++) {
+			int value = map.getOrDefault(s1.charAt(i), 0);
+			map.put(s1.charAt(i), ++value);
+		}
+		
+		for(int i=0; i<s2.length(); i++) {
+			int value = map.getOrDefault(s2.charAt(i), 0);
+			map.put(s2.charAt(i), --value);
+		}
+		
+		for(Map.Entry<Character,Integer> entry : map.entrySet()) {
+			if(entry.getValue() != 0) {
+				return 0;
+			}
+		}
+		
+		return 1;
+	}
