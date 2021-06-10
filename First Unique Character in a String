@@ -1,0 +1,17 @@
+	int firstUniqueChar(String s) {
+		int arr[] = new int [26];
+		for(int i=0; i<26; i++) {
+			arr[i]=0;
+		}
+		for(int i=0; i<s.length(); i++){
+			int temp = s.charAt(i);
+			arr[temp-97] = arr[temp-97]+1;
+        }
+		for(int i=0; i<s.length(); i++) {
+			int temp = s.charAt(i);
+			if(arr[temp-97] == 1) {
+				return i;
+			}
+		}
+		return -1;
+	}
