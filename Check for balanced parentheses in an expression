@@ -1,0 +1,33 @@
+	public int checkParentheses(String s) {
+		Stack<Character> stack = new Stack<>();
+		for(int i=0; i<s.length();i++) {
+			Character ch = s.charAt(i);
+			Character top = stack.empty() ? ' ' : stack.peek();
+			switch(ch) {
+			case ')':
+				if(top == '(') {
+					stack.pop();
+				}else {
+					stack.push(ch);	
+				}
+				break;
+			case '}':
+				if(top == '{') {
+					stack.pop();
+				}else {
+					stack.push(ch);	
+				}
+				break;
+			case ']':
+				if(top == '[') {
+					stack.pop();
+				}else {
+					stack.push(ch);	
+				}
+				break;
+			default:
+				stack.push(ch);		
+			}
+		}
+		return stack.empty() ? 1:0;
+    }
