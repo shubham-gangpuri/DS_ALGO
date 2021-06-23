@@ -1,0 +1,32 @@
+public Stack<Integer> sortStack(Stack<Integer> st) {
+		Stack<Integer> temp = new Stack<>();
+		while(!st.isEmpty()) {
+			int stElement = st.pop();
+			if(temp.isEmpty()) {
+				temp.add(stElement);
+			}else {
+				int tempTop = temp.peek();
+				if(stElement >= tempTop) {
+					temp.add(stElement);
+				}else {
+					int index = 0;
+					while(tempTop > stElement) {
+						tempTop = temp.pop();
+						st.add(tempTop);
+						index++;
+						if(temp.isEmpty()) {
+							break;
+						}else {
+							tempTop = temp.peek();
+						}
+					}
+					temp.add(stElement);
+					while(index != 0) {
+						temp.add(st.pop());
+						index--;
+					}
+				}
+			}
+		}
+		return temp;
+    }
