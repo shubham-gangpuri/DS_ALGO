@@ -1,0 +1,21 @@
+public Queue<Integer> reverseQueueFirstKElements(Queue<Integer> Q, int k) {
+		Stack stack = new Stack<Integer>();
+		
+		while(k != 0) {
+			stack.add(Q.poll());
+			k--;
+		}
+		
+		int size  = Q.size();
+		
+		while(!stack.isEmpty()) {
+			Q.add((Integer) stack.pop());
+		}
+		
+		while(size != 0) {
+			Q.add(Q.poll());
+			size--;
+		}
+		
+		return Q;
+    }
