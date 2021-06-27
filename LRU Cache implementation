@@ -1,0 +1,33 @@
+class LRUCache {
+    
+    List<Integer> listKeys = null;
+	HashMap<Integer, Integer> map = null;
+	int capacity = 0;
+	
+	public LRUCache(int capacity) {
+		listKeys = new ArrayList<Integer>(capacity);
+        map = new HashMap<>(capacity);
+        this.capacity = capacity;
+    }
+    
+    public int get(int key) {
+        if(listKeys.contains(key)) {
+        	listKeys.remove((Object)key);
+        	listKeys.add(key);
+       		return map.get(key);
+        }else {
+       		return -1;
+       	}
+    }
+    
+    public void put(int key, int value) {
+        if(listKeys.contains(key)) {
+        	listKeys.remove((Object)key);
+        }else if(listKeys.size() == capacity) {
+        	map.remove(listKeys.get(0));
+        	listKeys.remove(0);
+        }
+        listKeys.add(key);
+		map.put(key, value);
+    }
+}
