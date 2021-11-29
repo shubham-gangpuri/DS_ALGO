@@ -1,0 +1,27 @@
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+/**
+ * @type of root: TreeNode
+ * @type of req_sum: integer
+ * @return type: integer(1 if path sum exists else 0)
+ */
+class Solution {
+	public int pathSumExists(TreeNode root, int req_sum) {
+		if(root == null)
+            return 0;
+        
+        if(root.left == null && root.right == null)
+        	if(req_sum - root.val == 0)
+            	return 1;
+      
+        return Integer.max(pathSumExists(root.left, req_sum - root.val), pathSumExists(root.right, req_sum - root.val));
+    }	
+}
