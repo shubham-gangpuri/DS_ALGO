@@ -1,0 +1,23 @@
+class Solution {
+    public int numUniqueEmails(String[] emails) {
+        
+        Set<String> vaildEmails = new HashSet<String>();
+        
+        for(int i=0; i<emails.length; i++){
+            String email = emails[i];
+            int splitIndex = email.indexOf("@");
+            String domain = email.substring(splitIndex, email.length());
+            String name = email.substring(0, splitIndex);
+            
+            if(name.contains("+"))
+                name = name.substring(0,name.indexOf("+"));
+            
+            name = name.replaceAll("\\.","");
+            
+            vaildEmails.add(name+domain);
+        }
+        
+        return vaildEmails.size();
+        
+    }
+}
