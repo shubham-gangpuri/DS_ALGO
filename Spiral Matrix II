@@ -1,0 +1,39 @@
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int [][] res = new int [n][n];
+        
+        int rowBoundary = n-1;
+        int columnBoundary = n-1;
+        
+        int rowStart = 0;
+        int columnStart = 0;
+        int number = 1;
+        
+        while(rowBoundary>=rowStart && columnBoundary >= columnStart){
+            
+            for(int i = columnStart; i<= columnBoundary; i++){
+                res[rowStart][i] = number++;
+            }
+            rowStart++;
+            
+            for(int i = rowStart; i<= rowBoundary; i++){
+                res[i][columnBoundary] = number++;
+            }
+            columnBoundary--;
+            
+            for(int i = columnBoundary; i>= columnStart; i--){
+                res[rowBoundary][i] = number++;
+            }
+            rowBoundary--;
+            
+            for(int i = rowBoundary; i>= rowStart; i--){
+                res[i][columnStart] = number++;
+            }
+            columnStart++;
+            
+            
+        }
+        
+        return res;
+    }
+}
